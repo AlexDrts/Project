@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #111;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(90deg, #0b1220, #111827);
+  color: white;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #38bdf8;
+}
+
+.search input {
+  width: 450px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.search input:focus {
+  box-shadow: 0 0 0 3px rgba(56,189,248,0.3);
+}
+
+.cart {
+  background: rgba(255,255,255,0.08);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cart:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* CATEGORIES */
+.categories {
+  background: white;
+  display: flex;
+  gap: 18px;
+  padding: 14px 32px;
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.categories div {
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.categories div:hover {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+/* GRID */
+.container {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+  border: 1px solid #eef2f7;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #f1f5f9;
+}
+
+.card h3 {
+  margin: 12px 14px 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.price {
+  margin: 0 14px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+/* BUTTON */
+button {
+  margin: 14px;
+  width: calc(100% - 28px);
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #0f172a, #1e293b);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  transform: scale(1.02);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search input {
+    width: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .search input {
+    width: 100%;
+  }
+}
