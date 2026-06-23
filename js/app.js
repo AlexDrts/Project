@@ -20,6 +20,11 @@ buttons.forEach(button => {
       JSON.stringify(cart)
     );
 
+    document.cookie =
+      "cart=" +
+      encodeURIComponent(JSON.stringify(cart)) +
+      "; max-age=604800; path=/";
+
     alert("Товар додано у кошик");
   });
 });

@@ -255,3 +255,14 @@ button:hover {
   display: block;
   margin-top: 10px;
 }
+
+.delete-btn {
+  margin-top: 10px;
+  width: auto;
+  padding: 10px 16px;
+  background: #dc2626;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}

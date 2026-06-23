@@ -9,14 +9,29 @@ const total =
 
 let sum = 0;
 
-cart.forEach(item => {
+cart.forEach((item, index) => {
 
   const div = document.createElement("div");
 
   div.innerHTML = `
-    <h3>${item.name}</h3>
-    <p>${item.price}</p>
-  `;
+  <h3>${item.name}</h3>
+  <p>${item.price}</p>
+  <button class="delete-btn">Видалити</button>
+`;
+
+  const deleteBtn = div.querySelector(".delete-btn");
+
+  deleteBtn.addEventListener("click", () => {
+
+    cart.splice(index, 1);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+    location.reload();
+  });
 
   cartItems.append(div);
 
