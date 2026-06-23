@@ -14,9 +14,9 @@ cart.forEach(item => {
   const div = document.createElement("div");
 
   div.innerHTML = `
-        <h3>${item.name}</h3>
-        <p>${item.price}</p>
-    `;
+    <h3>${item.name}</h3>
+    <p>${item.price}</p>
+  `;
 
   cartItems.append(div);
 
@@ -27,7 +27,58 @@ cart.forEach(item => {
   sum += price;
 });
 
-total.textContent = `Разом: ${sum} грн`;
+total.textContent = `Разом: ${sum.toLocaleString()} грн`;
+
+function createOrder(orderId) {
+  return new Promise((resolve, reject) => {
+
+    setTimeout(() => {
+
+      if (Math.random() < 0.1) {
+        reject("Замовлення загубив менеджер");
+        return;
+      }
+
+      resolve(`Замовлення створено: ${orderId}`);
+
+    }, 1000);
+
+  });
+}
+
+function processOrder(orderId) {
+  return new Promise((resolve, reject) => {
+
+    setTimeout(() => {
+
+      if (Math.random() < 0.1) {
+        reject("Помилка під час обробки замовлення");
+        return;
+      }
+
+      resolve(`Замовлення оброблено: ${orderId}`);
+
+    }, 2000);
+
+  });
+}
+
+function deliverOrder(orderId) {
+  return new Promise((resolve, reject) => {
+
+    setTimeout(() => {
+
+      if (Math.random() < 0.1) {
+        reject("Замовлення загубила служба доставки");
+        return;
+      }
+
+      resolve(`Замовлення доставлено: ${orderId}`);
+
+    }, 3000);
+
+  });
+}
 
 const form = document.getElementById("orderForm");
 
@@ -35,9 +86,14 @@ form.addEventListener("submit", function(event) {
 
   event.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const email = document.getElementById("email").value.trim();
+  const name =
+    document.getElementById("name").value.trim();
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
 
   if (name.length < 2) {
     alert("Введіть коректне ім'я");
@@ -72,5 +128,24 @@ form.addEventListener("submit", function(event) {
   console.log("Замовлення:");
   console.log(orderData);
 
-  alert("Замовлення успішно оформлено!");
+  const orderId = Date.now();
+
+  createOrder(orderId)
+    .then(result => {
+      console.log(result);
+      return processOrder(orderId);
+    })
+    .then(result => {
+      console.log(result);
+      return deliverOrder(orderId);
+    })
+    .then(result => {
+      console.log(result);
+      alert("Замовлення успішно доставлено!");
+    })
+    .catch(error => {
+      console.error(error);
+      alert(error);
+    });
+
 });
